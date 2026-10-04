@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>QubitLab</title>
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+</head>
+
+<body>
+
+  <header>
+    <h1>QubitLab</h1>
+    <p>Build. Simulate. Understand.</p>
+  </header>
+
+  <main>
+
+    <section class="panel">
+
+      <h2>Quantum Circuit</h2>
+
+      <div id="circuit">
+        q0 ─────────────
+      </div>
+
+      <button id="runButton">
+        Test Server
+      </button>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>Output</h2>
+
+      <pre id="output">Ready.</pre>
+
+    </section>
+
+  </main>
+
+  <script
+    type="module"
+    src="/app.js"
+  ></script>
+
+</body>
+
+</html>
