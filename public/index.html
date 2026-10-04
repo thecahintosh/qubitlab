@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -9,51 +11,1081 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>QubitLab</title>
+  <title>
+    QubitLab
+  </title>
+
+
+  <!-- KaTeX -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css"
+    crossorigin="anonymous"
+  >
+
 
   <link
     rel="stylesheet"
     href="/style.css"
   >
+
 </head>
+
 
 <body>
 
-  <header>
-    <h1>QubitLab</h1>
-    <p>Build. Simulate. Understand.</p>
-  </header>
 
-  <main>
+<!-- ======================================================
+     AUTH
+====================================================== -->
+
+<section
+  id="authScreen"
+  class="auth-screen"
+>
+
+  <div class="auth-card">
+
+    <p class="eyebrow">
+      QUBITLAB
+    </p>
+
+    <h1>
+      Learn quantum computing
+      by building it.
+    </h1>
+
+    <p class="auth-description">
+      Design circuits, simulate quantum states,
+      visualize results and learn through experiments.
+    </p>
+
+
+    <form id="authForm">
+
+      <label>
+
+        Email
+
+        <input
+          id="emailInput"
+          type="email"
+          required
+          placeholder="you@example.com"
+        >
+
+      </label>
+
+
+      <label>
+
+        Password
+
+        <input
+          id="passwordInput"
+          type="password"
+          minlength="6"
+          required
+          placeholder="••••••••"
+        >
+
+      </label>
+
+
+      <button type="submit">
+        Sign In
+      </button>
+
+    </form>
+
+
+    <button
+      id="signUpButton"
+      class="secondary full-width"
+      type="button"
+    >
+      Create Account
+    </button>
+
+
+    <p
+      id="authMessage"
+      class="auth-message"
+    ></p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     APP
+====================================================== -->
+
+<div
+  id="appShell"
+  class="hidden"
+>
+
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <div class="brand-mark">
+      Q
+    </div>
+
+
+    <div>
+
+      <h1>
+        QubitLab
+      </h1>
+
+      <p>
+        Interactive Quantum Learning
+      </p>
+
+    </div>
+
+  </div>
+
+
+
+  <nav class="main-nav">
+
+    <button
+      class="nav-button"
+      data-view="learn"
+      type="button"
+    >
+      Learn
+    </button>
+
+
+    <button
+      class="nav-button active"
+      data-view="build"
+      type="button"
+    >
+      Build
+    </button>
+
+
+    <button
+      class="nav-button ai-nav"
+      data-view="tutor"
+      type="button"
+    >
+      AI Tutor
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-view="projects"
+      type="button"
+    >
+      Projects
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-view="dashboard"
+      type="button"
+    >
+      Dashboard
+    </button>
+
+  </nav>
+
+
+
+  <div class="top-actions">
+
+    <span
+      id="userEmail"
+      class="user-email"
+    ></span>
+
+
+    <button
+      id="saveButton"
+      class="secondary compact"
+      type="button"
+    >
+      Quick Save
+    </button>
+
+
+    <button
+      id="loadButton"
+      class="secondary compact"
+      type="button"
+    >
+      Quick Load
+    </button>
+
+
+    <button
+      id="signOutButton"
+      class="secondary compact"
+      type="button"
+    >
+      Sign Out
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- ======================================================
+     LEARN
+====================================================== -->
+
+<section
+  id="learnView"
+  class="app-view hidden"
+>
+
+  <div class="view-container">
+
+    <section class="learn-hero">
+
+      <p class="eyebrow">
+        EXPERIMENT-DRIVEN LEARNING
+      </p>
+
+
+      <h2>
+        Learn quantum concepts
+        by changing the circuit yourself.
+      </h2>
+
+
+      <p>
+        Open a working experiment, inspect its state
+        and modify the circuit to understand what
+        each operation actually does.
+      </p>
+
+    </section>
+
+
+    <div
+      id="lessonGrid"
+      class="lesson-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     BUILD
+====================================================== -->
+
+<section
+  id="buildView"
+  class="app-view"
+>
+
+  <div class="workspace">
+
+
+    <section class="panel builder-panel">
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            CIRCUIT BUILDER
+          </p>
+
+          <h2>
+            Quantum Circuit
+          </h2>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <button
+            id="undoButton"
+            class="secondary"
+            type="button"
+          >
+            Undo
+          </button>
+
+
+          <button
+            id="resetButton"
+            class="danger"
+            type="button"
+          >
+            Reset
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="controls">
+
+        <label>
+
+          Qubits
+
+          <select id="qubitCount">
+
+            <option value="1">
+              1
+            </option>
+
+            <option
+              value="2"
+              selected
+            >
+              2
+            </option>
+
+            <option value="3">
+              3
+            </option>
+
+            <option value="4">
+              4
+            </option>
+
+            <option value="5">
+              5
+            </option>
+
+            <option value="6">
+              6
+            </option>
+
+          </select>
+
+        </label>
+
+
+
+        <label>
+
+          Gate
+
+          <select id="gateType">
+
+            <option value="H">
+              H
+            </option>
+
+            <option value="X">
+              X
+            </option>
+
+            <option value="Y">
+              Y
+            </option>
+
+            <option value="Z">
+              Z
+            </option>
+
+            <option value="S">
+              S
+            </option>
+
+            <option value="T">
+              T
+            </option>
+
+            <option value="RX">
+              RX
+            </option>
+
+            <option value="RY">
+              RY
+            </option>
+
+            <option value="RZ">
+              RZ
+            </option>
+
+            <option value="CX">
+              CNOT
+            </option>
+
+            <option value="SWAP">
+              SWAP
+            </option>
+
+          </select>
+
+        </label>
+
+
+
+        <label id="targetWrapper">
+
+          Target
+
+          <select id="targetQubit"></select>
+
+        </label>
+
+
+
+        <label
+          id="controlWrapper"
+          class="hidden"
+        >
+
+          Control
+
+          <select id="controlQubit"></select>
+
+        </label>
+
+
+
+        <label
+          id="secondWrapper"
+          class="hidden"
+        >
+
+          Second
+
+          <select id="secondQubit"></select>
+
+        </label>
+
+
+
+        <label
+          id="angleWrapper"
+          class="hidden"
+        >
+
+          Angle
+
+          <input
+            id="gateAngle"
+            type="number"
+            value="1.5708"
+            step="0.1"
+          >
+
+        </label>
+
+
+        <button
+          id="addGateButton"
+          type="button"
+        >
+          Add Gate
+        </button>
+
+      </div>
+
+
+
+      <div
+        id="circuitCanvas"
+        class="circuit-canvas"
+      ></div>
+
+
+
+      <div class="examples">
+
+        <button
+          id="superpositionExample"
+          class="secondary"
+          type="button"
+        >
+          Superposition
+        </button>
+
+
+        <button
+          id="bellExample"
+          class="secondary"
+          type="button"
+        >
+          Bell State
+        </button>
+
+      </div>
+
+
+
+      <div class="gate-sequence">
+
+        <h3>
+          Gate Sequence
+        </h3>
+
+        <div id="gateSequence"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="panel results-panel">
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            SIMULATION
+          </p>
+
+          <h2>
+            Results
+          </h2>
+
+        </div>
+
+
+        <button
+          id="runButton"
+          type="button"
+        >
+          Run Circuit
+        </button>
+
+      </div>
+
+
+
+      <div class="shots-control">
+
+        <label>
+
+          Shots
+
+          <select id="shots">
+
+            <option value="100">
+              100
+            </option>
+
+            <option
+              value="1024"
+              selected
+            >
+              1024
+            </option>
+
+            <option value="4096">
+              4096
+            </option>
+
+          </select>
+
+        </label>
+
+      </div>
+
+
+
+      <h3>
+        Probabilities
+      </h3>
+
+      <div
+        id="probabilityCards"
+        class="probability-grid"
+      ></div>
+
+
+
+      <h3>
+        Measurement Histogram
+      </h3>
+
+      <div id="histogram"></div>
+
+    </section>
+
+
+
+    <section class="panel bloch-panel">
+
+      <p class="eyebrow">
+        QUANTUM STATE
+      </p>
+
+      <h2>
+        Bloch Sphere
+      </h2>
+
+      <div id="blochSphere"></div>
+
+    </section>
+
+
 
     <section class="panel">
 
-      <h2>Quantum Circuit</h2>
+      <p class="eyebrow">
+        STATEVECTOR
+      </p>
 
-      <div id="circuit">
-        q0 ─────────────
+      <h2>
+        Quantum State
+      </h2>
+
+      <div
+        id="statevector"
+        class="statevector"
+      ></div>
+
+    </section>
+
+
+
+    <section class="panel stepper-panel">
+
+      <p class="eyebrow">
+        STATE EVOLUTION
+      </p>
+
+      <h2>
+        Step Through Circuit
+      </h2>
+
+
+      <div class="step-controls">
+
+        <button
+          id="previousStepButton"
+          class="secondary"
+          type="button"
+        >
+          Previous
+        </button>
+
+
+        <span id="stepLabel">
+          Initial State
+        </span>
+
+
+        <button
+          id="nextStepButton"
+          class="secondary"
+          type="button"
+        >
+          Next
+        </button>
+
       </div>
 
-      <button id="runButton">
-        Test Server
+
+      <div id="stepState"></div>
+
+    </section>
+
+
+
+    <section class="panel">
+
+      <p class="eyebrow">
+        EXECUTION
+      </p>
+
+      <h2>
+        Circuit Timeline
+      </h2>
+
+      <div
+        id="timeline"
+        class="timeline"
+      ></div>
+
+    </section>
+
+
+
+    <section class="panel code-panel">
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            SDK EXPORT
+          </p>
+
+          <h2>
+            Generated Code
+          </h2>
+
+        </div>
+
+
+        <select id="framework">
+
+          <option value="qiskit">
+            Qiskit
+          </option>
+
+          <option value="cirq">
+            Cirq
+          </option>
+
+          <option value="pennylane">
+            PennyLane
+          </option>
+
+          <option value="qasm">
+            OpenQASM 3
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <pre id="generatedCode"></pre>
+
+
+      <button
+        id="copyButton"
+        class="secondary"
+        type="button"
+      >
+        Copy Code
       </button>
 
     </section>
 
+
+
     <section class="panel">
 
-      <h2>Output</h2>
+      <p class="eyebrow">
+        CIRCUIT DATA
+      </p>
 
-      <pre id="output">Ready.</pre>
+      <h2>
+        Circuit JSON
+      </h2>
+
+      <pre id="circuitJson"></pre>
 
     </section>
 
-  </main>
+  </div>
 
-  <script
-    type="module"
-    src="/app.js"
-  ></script>
+</section>
+
+
+
+<!-- ======================================================
+     AI TUTOR
+====================================================== -->
+
+<section
+  id="tutorView"
+  class="app-view hidden"
+>
+
+  <div class="view-container tutor-container">
+
+
+    <section class="tutor-hero">
+
+      <p class="eyebrow">
+        GROQ-POWERED TUTOR
+      </p>
+
+      <h2>
+        Ask about the circuit
+        you're actually building.
+      </h2>
+
+      <p>
+        QubitLab understands the current circuit,
+        statevector, execution step and your
+        learning progress.
+      </p>
+
+    </section>
+
+
+
+    <div class="tutor-layout">
+
+
+      <section class="panel ai-context-panel">
+
+        <p class="eyebrow">
+          CURRENT CONTEXT
+        </p>
+
+        <h2>
+          Circuit Snapshot
+        </h2>
+
+
+        <div id="aiCircuitSummary"></div>
+
+
+        <div class="ai-action-grid">
+
+          <button
+            id="explainCircuitButton"
+            type="button"
+          >
+            Explain Circuit
+          </button>
+
+
+          <button
+            id="debugCircuitButton"
+            class="secondary"
+            type="button"
+          >
+            Debug Circuit
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <section class="panel tutor-chat-panel">
+
+        <div class="section-header">
+
+          <div>
+
+            <p class="eyebrow">
+              AI TUTOR
+            </p>
+
+            <h2>
+              Ask QubitLab
+            </h2>
+
+          </div>
+
+
+          <span class="rich-answer-badge">
+            Markdown + Math
+          </span>
+
+        </div>
+
+
+
+        <div
+          id="aiResponse"
+          class="ai-response rich-ai-content"
+        >
+
+          <div class="ai-placeholder">
+            Ask about your experiment, request an
+            explanation, debug a circuit, or generate
+            a new quantum circuit.
+          </div>
+
+        </div>
+
+
+
+        <label class="ai-input-label">
+
+          Your question or circuit request
+
+          <textarea
+            id="aiPromptInput"
+            rows="5"
+            placeholder="Examples:
+
+Explain the GHZ state mathematically.
+
+Why does H followed by H return |0⟩?
+
+Create a 3-qubit GHZ state."
+          ></textarea>
+
+        </label>
+
+
+
+        <div
+          id="aiStatus"
+          class="ai-status"
+        ></div>
+
+
+
+        <div class="ai-buttons">
+
+          <button
+            id="askTutorButton"
+            type="button"
+          >
+            Ask Tutor
+          </button>
+
+
+          <button
+            id="generateCircuitButton"
+            class="ai-generate-button"
+            type="button"
+          >
+            Generate Circuit
+          </button>
+
+
+          <button
+            id="clearAiButton"
+            class="secondary"
+            type="button"
+          >
+            Clear
+          </button>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     PROJECTS
+====================================================== -->
+
+<section
+  id="projectsView"
+  class="app-view hidden"
+>
+
+  <div class="view-container">
+
+    <div class="view-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          PROJECTS
+        </p>
+
+        <h2>
+          Saved Experiments
+        </h2>
+
+        <p>
+          Save circuits and return to them later.
+        </p>
+
+      </div>
+
+
+      <button
+        id="newProjectButton"
+        type="button"
+      >
+        Save Current Circuit
+      </button>
+
+    </div>
+
+
+    <div id="projectsList"></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     DASHBOARD
+====================================================== -->
+
+<section
+  id="dashboardView"
+  class="app-view hidden"
+>
+
+  <div class="view-container">
+
+    <div class="view-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          LEARNING DASHBOARD
+        </p>
+
+        <h2>
+          Your Progress
+        </h2>
+
+        <p>
+          Mastery estimates based on your
+          experiments in QubitLab.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="progressGrid"
+      class="progress-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script
+  type="module"
+  src="/app.js"
+></script>
+
 
 </body>
 

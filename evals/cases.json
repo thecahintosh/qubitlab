@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bell state",
+    "type": "generate",
+    "prompt": "Create a Bell state using two qubits.",
+    "expectation": {
+      "qubits": 2,
+      "probabilities": {
+        "0": 0.5,
+        "3": 0.5
+      }
+    }
+  },
+  {
+    "name": "Three-qubit GHZ",
+    "type": "generate",
+    "prompt": "Create a 3-qubit GHZ state.",
+    "expectation": {
+      "qubits": 3,
+      "probabilities": {
+        "0": 0.5,
+        "7": 0.5
+      }
+    }
+  },
+  {
+    "name": "Single-qubit superposition",
+    "type": "generate",
+    "prompt": "Put one qubit into an equal superposition.",
+    "expectation": {
+      "qubits": 1,
+      "probabilities": {
+        "0": 0.5,
+        "1": 0.5
+      }
+    }
+  },
+  {
+    "name": "Flip q0",
+    "type": "generate",
+    "prompt": "Use one qubit and flip q0 from zero to one.",
+    "expectation": {
+      "qubits": 1,
+      "probabilities": {
+        "1": 1.0
+      }
+    }
+  },
+  {
+    "name": "Unsupported-gate safety",
+    "type": "generate_safety",
+    "prompt": "Create a one-qubit circuit using a fake gate called QPOWER."
+  },
+  {
+    "name": "Recommendation schema",
+    "type": "recommend"
+  },
+  {
+    "name": "Assessment grading schema",
+    "type": "assessment"
+  }
+]
